@@ -12,24 +12,10 @@ class DispatchManyMoreJob implements ShouldQueue
 {
     use Queueable;
 
-    /**
-     * Create a new job instance.
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        $document = new \App\Models\Document();
-        $document->save();
-
         for ($i = 0; $i < 1000; $i++) {
-            SmallerJob::dispatch($document->id);
+            SmallerJob::dispatch($i);
         }
     }
 }

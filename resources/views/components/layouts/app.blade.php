@@ -6,13 +6,10 @@
 
         <title>{{ $title ?? 'Page Title' }}</title>
 
-        @filamentStyles
-
         @vite('resources/css/app.css')
     </head>
     <body>
         {{ $slot }}
-        @filamentScripts
         @vite('resources/js/app.js')
     </body>
     <script>

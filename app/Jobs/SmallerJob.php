@@ -13,29 +13,15 @@ class SmallerJob implements ShouldQueue
 {
     use Queueable;
 
-    /**
-     * Create a new job instance.
-     */
-    protected $documentId;
+    protected $number;
 
-    /**
-     * Create a new job instance.
-     *
-     * @param int $documentId
-     */
-    public function __construct(int $documentId)
+    public function __construct(int $number)
     {
-        $this->documentId = $documentId;
+        $this->number = $number;
     }
 
-    /**
-     * Execute the job.
-     */
     public function handle(): void
     {
-        $document = \App\Models\Document::find($this->documentId);
-        Log::info('SmallerJob: ' . $this->documentId . ' @ ' . $document->count);
-        $document->count = $document->count + 1;
-        $document->save();
+        Log::info('SmallerJob: ' . $this->number);
     }
 }
